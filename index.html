@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .container{
+      background: url('https://source.unsplash.com/random/?productivity') no-repeat center center/cover;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container h1,p{
+      color: white;
+      padding: 10px;
+     
+    }
+
+    .container p{
+        font-style: italic;
+    }
+
+    #side-cont{
+      backdrop-filter: brightness(0.5) blur(5px);
+      padding: 50px;
+    
+    }
+   
+  </style>
+  <script>
+  fetch("https://type.fit/api/quotes")
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    let random_count = Math.floor(Math.random() * 100);
+    let auth = data[random_count].author;
+    let quote = data[random_count].text;
+    console.log(auth);
+    console.log(quote);
+    let text1 = document.createElement('h1');
+    let para = document.createElement('p');
+    document.getElementById('side-cont').appendChild(text1);
+    document.getElementById('side-cont').appendChild(para);
+    text1.innerHTML = quote  + "<br>";
+    para.innerHTML = "''" + auth + "''";
+  });
+
+  </script>
+  <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+
+    <div id="side-cont">
+
+    </div>
+
+
+  </div>
+
+
+</body>
+</html>
